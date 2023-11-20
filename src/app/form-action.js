@@ -1,13 +1,7 @@
 'use server'
 
-import { ClientComponentWithSlot } from "./client-component-with-slot"
-import { ServerComponent } from "./server-component"
+import { JsonPlaceholder } from "./server-wrapper"
 
 export async function serverAction({postId}) {
-  
-  return (
-    <ClientComponentWithSlot postId={postId}>
-      <ServerComponent postId={postId} />
-    </ClientComponentWithSlot>
-  )
+  return <JsonPlaceholder postId={postId} />
 }

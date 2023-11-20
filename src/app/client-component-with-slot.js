@@ -1,21 +1,22 @@
 'use client'
-import {useFormState} from 'react-dom'
+import { useFormState } from 'react-dom'
 import { serverAction } from './form-action'
 
-export function ClientComponentWithSlot({ postId, children }) {
-  const action = serverAction.bind(null, {postId: postId + 1})
+export function ClientComponentWithSlot({ data, children }) {
+  const action = serverAction.bind(null, {postId: data.id + 1})
   const [node, formAction] = useFormState(action, null)
   
   return (
     <>
-        {children}
-        {node ? node : (
-        <form action={formAction} >
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Get more posts
-          </button>
-        </form>
-        )}       
+      {children}
+      {/* If we have a node, we don't want to display the button any more. The new node will render a new button to fetch the next data */}
+      {node ? node : (
+      <form action={formAction} >
+        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Get more posts
+        </button>
+      </form>
+      )}
     </>
   )
 }
