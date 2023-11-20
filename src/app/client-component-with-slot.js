@@ -8,19 +8,14 @@ export function ClientComponentWithSlot({ postId, children }) {
   
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
         {children}
-        {!!node ? node : (
-          <div className="flex flex-col items-center justify-center">
-          <form action={formAction} >
-            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Get more posts
-            </button>
-          </form>
-        </div>
-        )}
-        
-      </div>
+        {node ? node : (
+        <form action={formAction} >
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Get more posts
+          </button>
+        </form>
+        )}       
     </>
   )
 }
