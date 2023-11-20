@@ -3,8 +3,7 @@ import { useFormState } from 'react-dom'
 import { serverAction } from './form-action'
 
 export function ClientComponentWithSlot({ data, children }) {
-  const action = serverAction.bind(null, {postId: data.id + 1})
-  const [node, formAction] = useFormState(action, null)
+  const [node, formAction] = useFormState(serverAction.bind(null, {postId: data.id + 1}), null)
   
   return (
     <>
